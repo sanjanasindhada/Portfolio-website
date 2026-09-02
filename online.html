@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link href="emp.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap Bundle (Includes Popper) -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        span {
+            color: red;
+            font-size: 12px;
+        }
+
+        i{
+            position: relative;
+            bottom: -10px;
+            left: 260px;
+        }
+    </style>
+
+</head>
+
+<body class="bg-light">
+    <form onsubmit="return validateForm()" action="rules.html">
+        <div class="container py-4">
+            <div class="card shadow border-0 mx-auto" style="max-width: 550px;">
+
+                <!-- Header -->
+                <div class="card-header text-center py-2 bg-warning-subtle">
+                    <h4 class="text-danger fw-bold mb-0">Student Registration</h4>
+                </div>
+
+                <div class="card-body py-3 px-4">
+
+                    <div class="row g-3">
+
+                        <!-- LEFT SIDE -->
+                        <div class="col-md-7">
+
+                            <div class="mb-2">
+                                <label class="form-label small fw-semibold mb-1">Name <span>*</span></label>
+                                <input type="text" class="form-control form-control-sm" onclick="fill_name()"
+                                    oninput="fill_name()" id="Name"><span id="name_error"></span>
+                            </div>
+
+                            <div class="mb-2">
+                                <label class="form-label small fw-semibold mb-1">Email <span>*</span></label>
+                                <input type="email" class="form-control form-control-sm" onclick="fill_email()"
+                                    oninput="fill_email()" id="Email"><span id="email_error"></span>
+                            </div>
+
+                            <div class="mb-2">
+                                <label class="form-label small fw-semibold mb-1">Password <span>*</span></label>
+
+                                <input type="password" class="form-control form-control-sm" onclick="fill_pass()"
+                                    oninput="fill_pass()" id="Pass"><span id="pass_error"></span>
+                                <i id="slash_eye" class="fa fa-eye-slash" onclick="show_pass()"
+                                        style="display:block;"></i>
+                                    <i id="normal_eye" class="fa fa-eye" onclick="hide_pass()"
+                                        style="display:none;"></i>
+                                <span id="pass_error"></span>
+                            </div>
+
+                            <div class="mb-2">
+                                <label class="form-label small fw-semibold mb-1">Date Of Birth <span>*</span></label>
+                                <input type="date" class="form-control form-control-sm" onclick="fill_date()"
+                                    oninput="fill_date()" id="Date"><span id="date_error"></span>
+                            </div>
+
+                            <div class="mb-2">
+                                <label class="form-label small fw-semibold mb-1">Gender <span>*</span></label><br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" onclick="choose_gender()"
+                                        oninput="choose_gender()">
+                                    <label class="form-check-label small">Male</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" onclick="choose_gender()"
+                                        oninput="choose_gender()">
+                                    <label class="form-check-label small">Female</label>
+                                </div><span id="radio_error"></span>
+                            </div>
+
+                            <div class="mb-2">
+                                <label class="form-label small fw-semibold mb-1">Upload Image <span>*</span></label>
+                                <input type="file" class="form-control form-control-sm" id="img_input"
+                                    onclick="choose_img()" onchange="choose_img()"><span id="img_error"></span>
+                            </div>
+
+                            <button type="submit" class="btn btn-danger btn-sm px-3 mt-2" id="sub_btn"
+                                disabled>Submit</button>
+
+                        </div>
+
+                        <!-- RIGHT SIDE -->
+                        <div class="col-md-5">
+
+                            <!-- Image Box -->
+                            <div class="border border-danger rounded-3 mb-3 d-flex justify-content-center align-items-center"
+                                style="height:180px; width: 200px;">
+                                <img id="preview" width="200%" height="100%" style="display: none; object-fit: cover;">
+                            </div>
+
+                            <!-- Password Rules -->
+                            <div class="border border-danger rounded-3 p-2" style="width: 200px;">
+                                <h6 class="text-danger fw-bold small mb-2">Password Validation</h6>
+                                <ul class="list-unstyled small mb-0" id="condition_list">
+                                    <li>✔ Uppercase Letter</li>
+                                    <li>✔ Lowercase Letter</li>
+                                    <li>✔ Number Required</li>
+                                    <li>✔ Special Character</li>
+                                    <li>✔ Min 6 Characters</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+<script src="online.js"></script>
+
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link href="emp.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap Bundle (Includes Popper) -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body class="bg-light">
+
+    <div class="container d-flex justify-content-center align-items-center vh-100 ">
+
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow p-4 main">
+
+                <h4 class="text-center mb-4">Employee Salary Calculation</h4>
+
+                <!-- Year -->
+                <div class="mb-3">
+                    <label class="form-label">Year</label>
+                    <input type="text" class="form-control" id="year_inpt" onclick="year_input(this)"
+                        oninput="year_input(this)" maxlength="4">
+                    <p id="year_error"></p>
+                </div>
+
+                <!-- Month -->
+                <div class="mb-3">
+                    <label class="form-label">Select Month</label>
+                    <select class="form-select" id="mnth" oninput="choose_month()"
+                        onchange="choose_month();set_month();" disabled>
+                        <option value="">Choose Month</option>
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <option value="March">March</option>
+                        <option value="April">April</option>
+                        <option value="May">May</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
+                    </select>
+                    <p id="month_error"></p>
+                </div>
+
+                <!-- Row 1 -->
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Total Days</label>
+                        <input type="text" class="form-control" id="total_day" readonly>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Per Day Salary</label>
+                        <input type="text" class="form-control" disabled id="per_day" onclick="per_DAY()"
+                            oninput="per_DAY(this)">
+                        <p id="per_day_error"></p>
+                    </div>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Present Days</label>
+                        <input type="text" class="form-control" disabled id="present" onclick="present_DAY()"
+                            oninput="present_DAY(this)">
+
+                        <p id="present_error"></p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Absent Days</label>
+                        <input type="text" class="form-control" disabled id="absent">
+                    </div>
+                </div>
+
+                <!-- Radio -->
+                <div class="mb-3">
+                    <label class="form-label">CL Applied?</label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="cl" disabled onchange="yes()" id="Yes">
+                            <label class="form-check-label">Yes</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="cl" disabled id="No" onclick="no()">
+                            <label class="form-check-label">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CL Days -->
+                <div id="CL_box" style="display: none;">
+                    <div class="mb-3">
+                        <label class="form-label">CL Days</label>
+                        <input type="number" class="form-control" disabled id="cl_day" onclick="Cl_Day()"
+                            oninput="Cl_Day(this)">
+                        <p id="cl_error"></p>
+                    </div>
+
+                    <!-- Totals -->
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Emp Actual Present Days</label>
+                            <input type="text" class="form-control" disabled id="emp_present" readonly>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Emp Actual Absent Days</label>
+                            <input type="text" class="form-control" disabled id="emp_absent" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Emp Basic Salary</label>
+                    <input type="text" class="form-control" disabled id="emp_salary" oninput="checkSalary()" readonly>
+                </div>
+                <div>
+
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <input type="text" class="form-control w-25" id="hr_per" placeholder="HR%" disabled
+                            oninput="hr_percent(this);final_amount()">
+                        <span id="HR_percent"></span>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <input type="text" class="form-control w-25" id="travel_per" placeholder="Travel%" disabled
+                            oninput="travel_percent(this);final_amount()">
+                        <span id="TRAVEL_percent"></span>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <input type="text" class="form-control w-25" id="sd_per" placeholder="SD%" disabled
+                            oninput="sd_percent(this);final_amount()">
+                        <span id="SD_percent"></span>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <input type="text" class="form-control w-25" id="mb_per" placeholder="MB%" disabled
+                            oninput="mb_percent(this);final_amount()">
+                        <span id="MB_percent"></span>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <input type="text" class="form-control w-25" id="food_per" placeholder="Food%" disabled
+                            oninput="food_percent(this);final_amount()">
+                        <span id="FOOD_percent"></span>
+                    </div>
+
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Addition Salary Amount</label>
+                    <input type="text" class="form-control" disabled placeholder="Final Amount" id="final" readonly>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Employee Total Salary</label>
+                    <input type="text" class="form-control" disabled placeholder="Employee Total Amount" id="emp_amount"
+                        readonly>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="emp.js"></script>
+
+</html>

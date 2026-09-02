@@ -1,0 +1,206 @@
+<html>
+
+<head>
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+        }
+
+        .box {
+            height: 400px;
+            width: 400px;
+            box-shadow: 0 5px 5px 5px grey;
+            align-items: center;
+            justify-content: center;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: white;
+        }
+
+        select,
+        input,
+        button {
+            width: 380px;
+            height: 50px;
+            border-radius: 5px;
+        }
+
+        #num {
+            font-size: 20px;
+        }
+
+        #select {
+            font-size: 20px;
+        }
+
+        #result {
+            width: 350px;
+            height: 20px;
+            border-radius: 5px;
+            background-color: gray;
+            color: whitesmoke;
+            padding: 15px;
+            margin-top: 10px;
+            font-size: 20px;
+        }
+
+        #btn {
+            font-size: 20px;
+        }
+    </style>
+    <script>
+        function btn() {
+            var n = parseInt(document.getElementById("num").value);
+            var option = document.getElementById("select").value;
+            var btn = document.getElementById("btn").value;
+            var result = document.getElementById("result");
+            if (option == "") {
+                alert("plz choose question.")
+            }
+            //Sum of Digits
+            else if (option == "1") {
+                var sum = 0;
+                for (n; n > 0; n = parseInt(n / 10)) {
+                    var ld = n % 10;
+                    sum += ld;
+                }
+                result.innerText = "sum of digits is:" + sum;
+            }
+            //Check Even Or Odd
+            else if (option == "2") {
+                if (n % 2 == 0) {
+                    result.innerText = n + " is Even";
+                }
+                else {
+                    result.innerText = n + " is Odd";
+                }
+            }
+            //palindrom number
+            else if (option == "3") {
+                var rev = 0;
+                var temp = n;
+                for (n; n > 0; n = parseInt(n / 10)) {
+                    var ld = n % 10;
+                    rev = rev * 10 + ld;
+                }
+                if (rev == temp) {
+                    result.innerText = temp + " is palindrom";
+                }
+                else {
+                    result.innerText = temp + " is nott palindrom";
+                }
+            }
+            //reverse number
+            else if (option == "4") {
+                var rev = 0;
+                for (n; n > 0; n = parseInt(n / 10)) {
+                    var ld = n % 10;
+                    rev = rev * 10 + ld;
+                }
+                result.innerText = "reverse Number is: " + rev;
+            }
+            //factorial
+
+            else if (option == "5") {
+                var fact = 1;
+                for (var x = 1; x <= n; x++) {
+                    fact *= x;
+                }
+                result.innerText = "factorial is: " + fact;
+            }
+            //prime number
+            else if (option == "6") {
+                if (n < 2) {
+                    result.innerText = n + " is not prime";
+                }
+                for (var i = 2; i <= n; i++) {
+                    if (n % i == 0) {
+                        result.innerText = n + " is not prime";
+                    }
+                    if (i == n) {
+                        result.innerText = n + " is prime";
+                    }
+                }
+            }
+            //Armstrong Number
+            else if (option == "7") {
+                var num = n;
+                var sum = 0;
+                var s = n;
+                var power;
+                var len = 0;
+                for (s; s > 0; s = parseInt(s / 10)) {
+                    len++;
+                }
+                for (num; num > 0; num = parseInt(num / 10)) {
+                    var ld = num % 10;
+                    power = ld ** len;
+                    sum += power;
+                }
+                if (sum == n) {
+                    result.innerText = n + " is an armstrong  number";
+                } else {
+                    result.innerText = n + " is not an armstrong  number";
+                }
+            }
+            else if (option == "8") {
+                if ((n % 400 === 0) || (n % 4 === 0 && n % 100 !== 0)) {
+                    result.innerText = n + " is a leap year";
+                } else {
+                    result.innerText = n + " is not a leap year";
+                }
+
+            }
+            //length of the number
+
+            else if (option == "9") {
+                var len = 0;
+                for (n; n > 0; n = parseInt(n / 10)) {
+                    len++;
+                }
+                result.innerText = " length of number is : " + len;
+            }
+
+            //largest value in the number
+            else if (option == "10") {
+                var max = 0;
+                for (n; n > 0; n = parseInt(n / 10)) {
+                    var ld = n % 10;
+                    if (ld > max) {
+                        max = ld;
+                    }
+                }
+                result.innerText = max + " is greater";
+            }
+            document.getElementById("num").value = "";
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="box">
+        <h1>Js Calculation Practice</h1>
+        <select id="select">
+            <option value="">1. Choose Question</option>
+            <option value="1">1. Sum of digits</option>
+            <option value="2">2. Check Even or Odd</option>
+            <option value="3">3. palindrom</option>
+            <option value="4">4. Reverse number</option>
+            <option value="5">5. Factorial</option>
+            <option value="6">6. Prime Check</option>
+            <option value="7">7. Armstrong</option>
+            <option value="8">8. Leap Year</option>
+            <option value="9">9. lenth of the number</option>
+            <option value="10">10. Largest value in the Number</option>
+        </select><br><br>
+        <b>Enter The Number:-<b><input type="number" id="num"><br><br>
+                <button id="btn" onclick="btn()">Calculate</button><br><br>
+                <div id="result">Result</div>
+    </div>
+
+</body>
+
+</html>

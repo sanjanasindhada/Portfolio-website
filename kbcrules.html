@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: black;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin: 40px;
+        }
+
+        .rules {
+            height: auto;
+            width: auto;
+            border: 5px solid white;
+            border-radius: 10px;
+            color: white;
+            line-height: 30px;
+            font-size: 15px;
+            box-shadow: 0px 4px 10px rgb(253, 251, 251, 0.5);
+        }
+
+        button {
+            height: 50px;
+            width: 100px;
+            font-size: 20px;
+            margin: 10px;
+            background-color: lightblue;
+            border: none;
+            justify-content: center;
+            text-align: center;
+            border-top-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        button:hover {
+            background-color: rgb(88, 209, 250);
+            transition: ease 1ms;
+        }
+
+        input {
+            margin: 10px;
+        }
+
+        #ab {
+            position: absolute;
+            top: 50px;
+            right: 0px;
+            height: 600px;
+            width: 400px;
+        }
+
+        #rs {
+            position: absolute;
+            top: 250px;
+            left: 900px;
+            height: 150px;
+            width: 150px;
+        }
+
+        #rs {
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .rupees {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <img class="rupees">
+    <div class="rules">
+        <ul>
+            <li>If the answer is correct then the player wins the corresponding prize and proceeds to<br> the next
+                question.
+            </li>
+            <li>If the answer is incorrect then the game ends and the player takes the corresponding <br>amount of the
+                prize.</li>
+            <li>The game ends either when the player gives an incorrect answer or successfully answers<br> all 10
+                questions.
+            </li>
+            <li>The player’s total winnings are displayed at the end of the game.</li>
+            <li>The player has options to use lifelines during the game.</li>
+            <li>Three lifelines are available: 50:50, Flip the Question, Audience Poll.</li>
+            <li>The player can use lifelines at any question, but only three lifelines are allowed in the<br> entire
+                game.
+            </li>
+            <li>50:50 lifeline removes two incorrect options and displays remaining options.</li>
+            <li>Flip the Question replaces the current question.</li>
+            <li>Audience Poll: Poll for the answer from the audience.</li>
+        </ul>
+        <div>
+            <input type="checkbox" id="check" onchange="enable()">I Have Read The Terms And Conditions And I Hearby
+            Accept And Agree To The Terms<br> And
+            Conditions As Stated Above.
+            <img src="rupee.png" id="rs">
+            <img src="ab.png" id="ab">
+
+        </div>
+        <br><br>
+
+        <button id="btn1" disabled onclick="Play()">Let's Play</button>
+        <button id="btn2" onclick="Quit()">Quit</button>
+    </div>
+</body>
+<script>
+    function enable() {
+        var CHECK = document.getElementById("check");
+        if (CHECK.checked) {
+            document.getElementById("btn1").disabled = false;
+            document.getElementById("btn2").disabled = true;
+        } else {
+            document.getElementById("btn1").disabled = true;
+            document.getElementById("btn2").disabled = false;
+        }
+    }
+    function Quit() {
+        window.location.href = "kbc.html";
+
+    }
+    function Play() {
+        window.location.href = "game_start.html";
+    }
+</script>
+
+</html>

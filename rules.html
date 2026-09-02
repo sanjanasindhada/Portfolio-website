@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Rules</title>
+
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #38b2ac, #4299e1);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .rules-card {
+            background: #fff;
+            padding: 25px 30px;
+            border-radius: 15px;
+            max-width: 750px;
+            width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .rules-card h3 {
+            text-align: center;
+            color: #e53e3e;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .rules-list li {
+            margin-bottom: 6px;
+            font-size: 15px;
+        }
+
+        .start-btn {
+            display: block;
+            margin: auto;
+            margin-top: 15px;
+            padding: 10px 35px;
+            border-radius: 25px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="ques.html">
+        <div class="rules-card">
+            <h3>Rules :-</h3>
+            <div class="photo"
+                style="border: 1px solid red; border-radius: 100%; height: 200px; width: 200px; margin-left: 120px; ">
+                <img id="studentImg" style="display: none; border-radius: 100%; object-fit: cover;" width="100%" height="100%"></div>
+            <ol class="rules-list">
+                <li>Ensure you have a stable internet connection before starting the exam.</li>
+                <li>Use a desktop or laptop – mobile phones and tablets are not allowed.</li>
+                <li>Open the exam only in Google Chrome or Mozilla Firefox (latest version).</li>
+                <li>Keep your webcam and microphone ON if required.</li>
+                <li>Do not refresh or close the exam window once it has started.</li>
+                <li>The exam is time-bound, so complete all sections within the given duration.</li>
+                <li>Do not switch tabs or open new windows during the exam.</li>
+                <li>Copying, screen sharing, or using AI tools is strictly prohibited.</li>
+                <li>Do not discuss or share answers with others.</li>
+                <li>Avoid multiple logins or using more than one device.</li>
+                <li>Review answers carefully before final submission.</li>
+                <li>Wait for submission confirmation before closing the window.</li>
+                <li>Results will be shared later via official portal or email.</li>
+                <li>Maintain honesty and discipline — violations may result in disqualification.</li>
+            </ol>
+            <button class="btn btn-success start-btn">Start Test</button>
+        </div>
+    </form>
+</body>
+<script>
+    window.onload = function () {
+        var imgURL = sessionStorage.getItem("tempImage");
+        var img = document.getElementById("studentImg");
+        if (imgURL) {
+            img.src = imgURL;
+            img.style.display = "block";
+        }
+    }
+</script>
+
+</html>

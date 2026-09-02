@@ -1,0 +1,113 @@
+<html>
+
+<head>
+    <title>Calculator</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0
+        }
+
+        body {
+            background-color: #a8c7fa;
+        }
+
+        .box {
+            height: 600px;
+            width: 400px;
+            margin-top: 100px;
+            border: none;
+            background-color: 1C1C1C;
+            border-radius: 20px;
+            box-shadow: 10px #121212;
+
+        }
+
+        #result {
+            height: 50px;
+            width: 300px;
+            border-radius: 10px;
+        }
+
+        input,
+        button {
+            background-color: white;
+            height: 50px;
+            width: 50px;
+            margin: 10px;
+            border-radius: 50px;
+            font-size: 20px;
+            box-shadow: 5px 5px 5px 5px black;
+            font-weight: bold;
+        }
+
+        input:hover {
+            opacity: 0.5;
+        }
+
+        #clean {
+            width: 70px;
+            background-color: #bbe5d6;
+        }
+
+        .on {
+            background-color: rgb(185, 246, 42);
+        }
+
+        .off {
+            background-color: red;
+        }
+    </style>
+    <script>
+
+        function on() {
+            var btns = document.getElementsByClassName("button");
+            for (var i = 0; i < btns.length; i++) {
+                btns[i].disabled = false;
+            }
+        }
+        function of() {
+            var btns = document.getElementsByClassName("button");
+            for (var i = 0; i < btns.length; i++) {
+                btns[i].disabled = true;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <center>
+        <div class="box">
+            <input type="text" id="result"><br><br>
+            <input type="button" value="7" onclick="document.getElementById('result').value+=7" class="button" disabled>
+            <input type="button" value="8" onclick="document.getElementById('result').value+=8" class="button" disabled>
+            <input type="button" value="9" onclick="document.getElementById('result').value+=9" class="button" disabled>
+            <input type="button" value="*" onclick="document.getElementById('result').value+='*'" class="button"
+                disabled><br><br>
+            <input type="button" value="4" onclick="document.getElementById('result').value+=4" class="button" disabled>
+            <input type="button" value="5" onclick="document.getElementById('result').value+=5" class="button" disabled>
+            <input type="button" value="6" onclick="document.getElementById('result').value+=6" class="button" disabled>
+            <input type="button" value="-" onclick="document.getElementById('result').value+='-'" class="button"
+                disabled><br><br>
+            <input type="button" value="1" onclick="document.getElementById('result').value+=1" class="button" disabled>
+            <input type="button" value="2" onclick="document.getElementById('result').value+=2" class="button" disabled>
+            <input type="button" value="3" onclick="document.getElementById('result').value+=3" class="button" disabled>
+            <input type="button" value="+" onclick="document.getElementById('result').value+='+'" class="button"
+                disabled><br><br>
+            <input type="button" value="%" onclick="document.getElementById('result').value+='%'" class="button"
+                disabled>
+            <input type="button" value="0" onclick="document.getElementById('result').value+=0" class="button" disabled>
+            <input type="button" value="." onclick="document.getElementById('result').value+='.'" class="button"
+                disabled>
+            <input type="button" value="="
+                onclick="document.getElementById('result').value=eval(document.getElementById('result').value)"
+                class="button" disabled><br><br>
+            <button id="clean" onclick="document.getElementById('result').value=''" class="button"
+                disabled>Clean</button>
+            <button onclick="on()" class="on">ON</button>
+            <button onclick="of()" class="off"> OFF</button>
+        </div>
+    </center>
+</body>
+
+</html>

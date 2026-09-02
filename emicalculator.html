@@ -1,0 +1,150 @@
+<html>
+
+<head>
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            font-family: Arial, sans-serif;
+        }
+
+        .section {
+            width: 550px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00e6e6;
+        }
+
+        label {
+            font-weight: bold;
+            color: #ddd;
+        }
+
+        input {
+            border-radius: 8px;
+            height: 35px;
+            width: 400px;
+            border: none;
+            outline: none;
+            padding-left: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        input::placeholder {
+            color: #ccc;
+        }
+
+        button {
+            padding: 10px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00c6ff, #0072ff);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(45deg, #0072ff, #00c6ff);
+        }
+
+        span {
+            color: #ff6b6b;
+        }
+
+        .box span {
+            color: #00e6e6;
+            text-decoration: underline;
+        }
+
+        h4 {
+            color: #eee;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th {
+            background: #00c6ff;
+            color: black;
+        }
+
+        td {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        #btn_btn {
+            margin-left: 40%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="section">
+        <h1>Home Loan Emi Calculator</h1>
+        <label>Loan Amount(₹):</label><br>
+        <input type="text" id="amount" onclick="input_amount()"
+            oninput="input_amount(); input_num(this); format(); click_btn();">
+        <span id="amount_error"></span><br><br>
+        <label>Annual Interest Rate(%):</label><br>
+        <input type="text" id="rate" onclick="input_rate();" oninput="input_rate();return number_allow(this)"
+            onkeyup="click_btn()">
+        <span id="rate_error"></span><br><br>
+        <label>Tenure(In Year):</label><br>
+        <input type="text" placeholder="enter Year ex:5" id="year" onclick="input_year()"
+            oninput="input_year();return num_only(this)" onkeyup="click_btn()">
+        <span id="year_error"></span><br><br>
+        <button disabled id="btn" onclick="click_btn();calculate_emi()" style="width: 400px;">Calculate EMI</button>
+        <div class="box" style="display: none;">
+            <h4>Original Principle Amount :<span id="o_p"></span></h4>
+            <h4 id="amount_word"></h4>
+            <h4>Annual Interest Rate: <span id="A_interest"></span></h4>
+            <h4 id="rate_word"></h4>
+            <h4>Total Months: <span id="total_month"></span></h4>
+            <h4 id="month_word"></h4>
+            <h4>Monthly EMI Amount: <span id="monthly_emi"></span></h4>
+            <h4 id="emi_word"></h4>
+            <h4>Total Interest Amount: <span id="total_interest"></span></h4>
+            <h4 id="total_interest_word"></h4>
+            <h4>Total Amount Payble: <span id="total_amount"></span></h4>
+            <h4 id="amount_payble_word"></h4>
+            <table border="1" id="emi_table" style="text-align:  center;">
+                <thead>
+                    <tr>
+                        <th>month</th>
+                        <th>EMI (₹)</th>
+                        <th>Principle (₹)</th>
+                        <th>Interest (₹)</th>
+                        <th>balance (₹)</th>
+                    </tr>
+                </thead>
+                <tbody id="table_body">
+                </tbody>
+            </table>
+            <div class="btn">
+                <button id="btn_btn" onclick="print_btn()"
+                    style="width: 80px;font-size: 20px; margin-top: 10px; display: none;">print</button>
+            </div>
+        </div>
+    </div>
+    <script src="emi.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,385 @@
+<html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: rgb(16, 16, 78);
+    }
+
+    form {
+        animation: fadeIn 2s ease forwards;
+    }
+
+    #watch {
+        position: absolute;
+        top: 100px;
+        left: 30px;
+        display: none;
+    }
+
+    #greeting_img {
+        height: 300px;
+        width: 300px;
+    }
+
+    .div {
+        height: 610px;
+        width: 1000px;
+        border-radius: 5px;
+        position: absolute;
+        top: 60px;
+        margin-left: 400px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .div::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: url('bg.jpg');
+        background-size: cover;
+        background-position: center;
+        filter: blur(3px);
+        z-index: -1;
+    }
+
+    span {
+        font-size: 12px;
+        color: red;
+    }
+
+    i {
+        position: absolute;
+        top: 95px;
+        left: 310px;
+    }
+
+    p {
+        color: grey;
+    }
+
+    #pass {
+        top: 110px;
+        right: 735px;
+    }
+
+    #sad_img {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        display: none;
+        z-index: 5;
+    }
+
+    #sad_img img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    #time {
+        position: absolute;
+        top: 50px;
+        left: 600px;
+        z-index: 10;
+    }
+
+    td {
+        color: white;
+        line-height: 35px;
+    }
+
+    .time_box {
+        height: 40px;
+        width: 300px;
+        background-color: white;
+        margin: 10px;
+        border-top-left-radius: 25px;
+        border-bottom-right-radius: 25px;
+        display: flex;
+        justify-content: center;
+        /* horizontal center */
+        align-items: center;
+        /* vertical center */
+    }
+
+    .msg {
+        height: 40px;
+        width: 300px;
+        background-color: white;
+        margin: 10px;
+        border-top-left-radius: 25px;
+        border-bottom-right-radius: 25px;
+        display: flex;
+        justify-content: center;
+        /* horizontal center */
+        align-items: center;
+        /* vertical center */
+    }
+
+    .captcha {
+        height: 20px;
+        width: 80px;
+        background-color: rgb(182, 179, 179);
+        border-radius: 3px;
+        position: absolute;
+        bottom: 178px;
+        left: 170px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .IMG {
+        height: 300px;
+        width: 300px;
+        border: 5px solid white;
+        position: absolute;
+        top: 10px;
+        left: 600px;
+        border-radius: 10px;
+    }
+
+    .inner_box {
+        height: 287px;
+        width: 286px;
+        border: 5px solid white;
+        border-radius: 10px;
+        margin-top: 2px;
+        margin-left: 2px;
+    }
+
+    #preview {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .box p {
+        line-height: 5px;
+        margin: 15px;
+    }
+
+    #strength {
+        margin-left: 15px;
+        color: white;
+    }
+
+    .div {
+        animation: fadeIn 4s ease forwards;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* 
+    #watch {
+        opacity: 0;
+        animation: fadeIn 4s ease forwards;
+    }
+
+    @keyframes slideImage {
+        0% {
+            opacity: 0;
+            transform: translateY(-150px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    } */
+</style>
+
+<body onload="run_timer()">
+
+    <center>
+        <div id="watch">
+            <div class="time_box">
+                <h2 id="timer"></h2>
+            </div>
+            <img src="" id="greeting_img">
+            <div class="msg">
+                <h2 id="clock"></h2>
+            </div>
+        </div>
+    </center>
+    <!-- <center> -->
+    <div class="div">
+        <div class="IMG">
+            <div class="inner_box">
+                <img id="preview">
+            </div>
+        </div>
+        <form onsubmit="submitform(); return validation()">
+            <table>
+                <tr>
+                    <td>Name<span>*</span></td>
+                    <td><input type="text" id="uname" onclick="u_name()" onkeyup="u_name()"
+                            onkeypress="return only_letters(event)" oninput="checkform()">
+                        <span id="uname_error"></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Email<span>*</span></td>
+                    <td><input type="email" id="uemail" onclick="u_email()" onkeyup="u_email()"
+                            onkeypress="email_condition(this.value)" oninput="checkform()"><span
+                            id="uemail_error"></span></td>
+                </tr>
+
+                <tr>
+                    <td>password<span>*</span></td>
+                    <td><input type="password" id="upass" onclick="u_pass()" onkeyup="check(this.value);u_pass()"
+                            oninput="checkform()">
+                        <i id="slash_eye" class="fa fa-eye-slash" onclick="show_pass()" style="display: block;"></i>
+                        <i id="normal_eye" class="fa fa-eye" onclick="hide_pass()" style="display :none;"></i>
+                        <span id="upass_error" style="color: red; font-size: 13px; margin-left: 20px;"></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Permanent Address<span>*</span></td>
+                    <td><textarea type="address" id="padd" onclick="p_add()" onkeyup="p_add()"
+                            oninput="checkform()"></textarea><span id="padd_error"></span></td>
+                </tr>
+
+                <tr>
+                    <td>contact no<span>*</span></td>
+                    <td><input type="number" id="unum" onclick="u_num()" onkeyup="u_num()" maxlength="10"
+                            oninput="checkform()"><span id="unum_error"></span></td>
+                </tr>
+
+                <tr>
+                    <td>Date<span>*</span></td>
+                    <td><input type="date" id="fill_date" onclick="fillDate()" oninput="fillDate();checkform()"><span
+                            id="date_error"></span></td>
+                </tr>
+
+                <tr>
+                    <td>City<span>*</span></td>
+                    <td>
+                        <select id="city" onclick="select_city()" onkeyup="select_city()" oninput="checkform()">
+                            <option value="">chooce city</option>
+                            <option value="indore">indore</option>
+                            <option value="bhopal">bhopal</option>
+                            <option value="khargone">khargone</option>
+                            <option value="indore">indore</option>
+                            <option value="barwani">barwani</option>
+                        </select>
+                        <span id="city_error"></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>chooce file<span>*</span></td>
+                    <td><input type="file" id="file" accept="image/*" onclick="select_file()" oninput="select_file()"
+                            onchange="checkform();showimage(event)">
+                        <span id="file_error"></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Gender<span>*</span></td>
+                    <td><input type="radio" name="gender" id="male" onclick="choose_gender()"
+                            oninput="choose_gender();checkform()">Male
+                        <input type="radio" name="gender" id="female" onclick="choose_gender()"
+                            oninput="choose_gender();checkform()">Female
+                        <span id="radio_error"></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Hobby<span>*</span></td>
+                    <td><input type="checkbox" name="hobby" id="hobby1" onclick="choose_hobby()"
+                            onchange="choose_hobby();" oninput="checkform()">Cricket
+                        <input type="checkbox" name="hobby" id="hobby2" onclick="choose_hobby()"
+                            onchange="choose_hobby()" oninput="checkform()">Hocky
+                        <input type="checkbox" name="hobby" id="hobby3" onclick="choose_hobby()"
+                            onchange="choose_hobby()" oninput="checkform()">Football
+                        <input type="checkbox" name="hobby" id="hobby4" onclick="choose_hobby()"
+                            onchange="choose_hobby()" oninput="checkform()">Netball
+                        <input type="checkbox" name="hobby" id="hobby5" onclick="choose_hobby()"
+                            onchange="choose_hobby()" oninput="checkform()">Volleyball
+                        <span id="checkBox_error"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="captcha_input" style="width: 100px;" onkeyup="captcha_typing()"
+                            onclick="captcha_click()" oninput="checkform()" onchange="checkform()">
+                    </td>
+                    <td>
+                        <span style="color: white; font-size:30px;" onclick="generate()">↻</span>
+                    </td>
+                    <td>
+                        <div class="captcha">
+                            <span id="captcha_text" style="font-size: 15px;"></span>
+                        </div>
+                        <p id="captcha_error" style="color: red;"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input id="sub_btn" type="button" value="submit"
+                            style="bottom:10px; position: absolute;left: 50%; padding: 7px; width: 100px; border-radius: 10px;font-weight: bold;"
+                            disabled oninput="checkform()" onclick="goNext()"></td>
+                </tr>
+            </table>
+            <div class="box" style="font-size: 15px;">
+                <h2 id="strength">strength</h2>
+                <p id="p1">8 Characters</p>
+                <p id="p2">1 Upper Case Characters</p>
+                <p id="p3">2 Lower Case Characters</p>
+                <p id="p4">3 Numerical Case Characters</p>
+                <p id="p5">4 Special Case Characters</p>
+            </div>
+        </form>
+    </div>
+</body>
+<script src="kbc.js"></script>
+
+<script>
+    document.getElementById("file").addEventListener("change", function () {
+        var file = this.files[0];
+        var preview = document.getElementById("preview");
+        var file_error = document.getElementById("file_error");
+        if (!file) {
+            file_error.innerHTML = "upload the image";
+            preview.style.display = "none";
+            return;
+        }
+        file_error.innerHTML = "";
+        var imgURL = URL.createObjectURL(file);
+        preview.src = imgURL;
+        preview.style.display = "block";
+    })
+    $(document).ready(function () {
+        $("#watch").slideDown(5000);
+    });
+
+</script>
+
+</html>

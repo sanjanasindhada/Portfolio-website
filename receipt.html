@@ -1,0 +1,153 @@
+<html>
+
+<head>
+    <title>ABC Institute</title>
+    <style>
+        .box {
+            border: 1px solid black;
+            height: 700px;
+            width: 700px;
+            background-color: rgb(94, 185, 245);
+            ;
+            position: absolute;
+            left: 400px;
+        }
+
+        .box1 {
+            height: 100px;
+            border-bottom: 1px solid black;
+            margin-bottom: 1px;
+            text-align: center;
+        }
+
+        .box2 {
+            height: 48px;
+            border-bottom: 1px solid black;
+            text-align: center;
+        }
+
+        .box3 {
+            height: 539px;
+            text-align: right;
+            padding: 10px;
+        }
+
+        #name {
+            position: absolute;
+            top: 220px;
+            padding: 30px;
+            font-size: 20px;
+        }
+
+        #name input {
+            width: 250px;
+        }
+
+        .box4 {
+            position: absolute;
+            top: 280px;
+            left: 37px;
+        }
+
+        table {
+            font-size: 20px;
+        }
+
+       @media print {
+
+    /* Print ke time ye dono hide ho jayenge */
+    .side_box,
+    #discount,
+    #print {
+        display: none !important;
+    }
+
+}
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="box1">
+            <h1>ABC INSTITUTE</h1>
+            <h3>Shree Krishna indore(M.P.)ph.88152-10960</h3>
+        </div>
+        <div class="box2">
+            <h3>Receipt</h3>
+        </div>
+        <div class="box3">
+            <label id="date1">Date:-<input type="date" id="form_date" onchange="fill_date()"></label><br>
+            <div id="name"><label>Name of Student:-</label><input type="text" id="input_name" oninput="fill_name()"
+                    disabled onkeypress="return name_validation(event)">
+                <span id="name_error"></span>
+            </div>
+        </div>
+        <div class="box4">
+            <table border="1">
+                <tr>
+                    <td>
+                        COURSES OFFERED BY INSTITUTE
+                    </td>
+                    <td>COURSES FEES</td>
+                </tr>
+                <button
+                    style="background-color: red; padding: 7px; border: none; border-radius: 4px;position: absolute; right:-150px;"
+                    disabled id="discount" onclick="dis();">Discount_btn</button>
+                <div class="side_box" style="height: 150px; width: 250px; border: 1px solid black;
+                 position: absolute; right: -450px; bottom: 50px; padding: 10px; display: none;">
+                    <p id="per">Total percentage Discount:- <span id="per_text"></span></p>
+                    <p id="p_dis">Discount Price:- <span id="p_text"></span></p>
+                    <p id="o_price">Original Price:- <span id="0_price_text"></span></p>
+                    <p id="p_fees">Pay Fees:- <span id="p_fees_text"></span></p>
+                </div>
+                <tr>
+                    <td>Courses</td>
+                    <td>
+                        <select disabled id="selection" onchange="choose_option()">
+                            <option value="">select courses</option>
+                            <option value="java">JAVA</option>
+                            <option value="python">PYTHON</option>
+                            <option value="mern">MERN STACK</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Pay Fees</td>
+                    <td><input type="text" placeholder="Enter Amount" disabled id="amount" oninput="fill_amount()"
+                            onkeypress="return num_validation(event)"><span id="num_error"
+                            style="font-size: 10px;"></span></td>
+                </tr>
+                <tr>
+                    <td>GST Include
+                        <select disabled id="gst" onchange="choose_GST()">
+                            <option value="">GST%</option>
+                            <option value="5">5%</option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                        </select>
+                    </td>
+                    <td><input type="text" disabled id="gst_input"></td>
+                </tr>
+                <tr>
+                    <td>CGST(%)</td>
+                    <td><input type="text" disabled id="cgst_input"></td>
+                </tr>
+                <tr>
+                    <td>SGST%</td>
+                    <td><input type="text" disabled id="sgst_input"></td>
+                </tr>
+                <tr>
+                    <td>Total fees Including Tax
+                    </td>
+                    <td><input type="text" disabled id="fees"></td>
+                </tr>
+            </table>
+        </div>
+        <center><button style="position: absolute; bottom: 150px; padding: 10px; border-radius: 3px; border: none;"
+                disabled id="print" onclick="printBill()">Print Receipt</button></center>
+    </div>
+    <script src="receipt.js"></script>
+</body>
+
+</html>

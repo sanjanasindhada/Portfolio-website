@@ -1,0 +1,920 @@
+<html>
+
+<head>
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        body {
+            background-color: black;
+        }
+
+        #rs {
+            position: absolute;
+            top: -200px;
+            left: 34%;
+            height: 200px;
+            width: 200px;
+            animation: dropDown 2s ease forwards, spin 3s linear infinite;
+        }
+
+        @keyframes dropDown {
+            0% {
+                top: -200px;
+                opacity: 0;
+            }
+
+            100% {
+                top: 80px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        #ab {
+            position: absolute;
+            top: 30px;
+            left: 30%;
+            height: 500px;
+            width: 310px;
+            animation: riseUp 1s ease-out forwards;
+            animation-delay: 1s;
+            z-index: 1;
+            opacity: 0;
+        }
+
+
+        @keyframes riseUp {
+            0% {
+                transform: translateY(340px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .lifeline1 img {
+            height: 100px;
+            width: 100px;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        .lifeline2 img {
+            height: 100px;
+            width: 100px;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        .lifeline3 img {
+            height: 100px;
+            width: 100px;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        .lifeline4 img {
+            height: 100px;
+            width: 100px;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        .box {
+            position: relative;
+            height: 250px;
+            width: 1000px;
+            background-color: rgb(73, 4, 73);
+            ;
+            border-radius: 10px;
+            margin-left: 10px;
+            margin-top: -4px;
+            z-index: 2;
+            animation: dropDown 1s ease forwards;
+        }
+
+        @keyframes dropDown {
+            0% {
+                top: -200px;
+                opacity: 0;
+            }
+
+            100% {
+                top: 10px;
+                opacity: 1;
+            }
+        }
+
+        .box2 {
+            height: 50px;
+            width: 970px;
+            border: 2px solid white;
+            margin-left: 8px;
+            justify-content: center;
+            padding: 5px;
+            border-radius: 10px;
+            /* background-color:  rgb(73, 4, 73);; */
+            text-align: center;
+            line-height: 50px;
+            font-size: 20px;
+        }
+
+
+        .b1,
+        .b2 {
+            height: 50;
+            width: 482px;
+            border-radius: 10px;
+            margin-left: 8px;
+            margin-top: 20px;
+            border: 2px solid white;
+            display: inline-block;
+            text-align: center;
+            line-height: 50px;
+            font-size: 20px;
+            /* background-color:  rgb(73, 4, 73);; */
+        }
+
+        .b3,
+        .b4 {
+            height: 50;
+            width: 482px;
+            border-radius: 10px;
+            margin-left: 8px;
+            margin-top: 20px;
+            border: 2px solid white;
+            text-align: center;
+            line-height: 50px;
+            font-size: 20px;
+            display: inline-block;
+            /* background-color:  rgb(73, 4, 73);; */
+        }
+
+        .right_box div {
+            height: 36px;
+            box-shadow: 2px 1px 1px 1px rgb(255, 255, 255, 1);
+            width: 250px;
+            background-color: rgb(73, 4, 73);
+            margin: 5px;
+            border-top-left-radius: 35px;
+            border-top-right-radius: 35px;
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            justify-content: center;
+            display: flex;
+            text-align: center;
+            align-items: center;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .right_box {
+            position: absolute;
+            top: 20px;
+            right: 10px;
+            animation: riseUp 1s ease forwards
+        }
+
+        @keyframes riseUp {
+            0% {
+                transform: translateY(300px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .timer {
+            position: absolute;
+            bottom: 150px;
+            left: 70%;
+            height: 100px;
+            width: 100px;
+            background-color: white;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #time_box {
+            color: red;
+            font-size: 60px;
+            margin-top: 20px;
+
+        }
+
+        .time-slide {
+            display: inline-block;
+            animation: slideUp 0.7s ease;
+        }
+
+        @keyframes slideUp {
+            0% {
+                transform: translateY(40px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        button {
+            background-color: green;
+            border: none;
+            border-radius: 10px;
+            height: 40px;
+            width: 100px;
+            color: white;
+            font-size: 20px;
+        }
+
+        .main {
+            display: block;
+        }
+
+        .lifeline {
+            height: 450px;
+            display: flex;
+            flex-direction: column;
+
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: 1s;
+        }
+
+        .show-life {
+            transform: translateX(0);
+            /* normal position */
+            opacity: 1;
+        }
+
+        .hide-life {
+            transform: translateY(-150px);
+            opacity: 0;
+        }
+
+        .lifeline {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .poll1,
+        .poll2,
+        .poll3,
+        .poll4 {
+            width: 50px;
+            background-color: yellow;
+            border-radius: 5px;
+
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+
+            color: black;
+            font-size: 12px;
+
+            transition: height 0.5s ease;
+        }
+
+        .poll_box {
+            border-radius: 10px;
+            height: 200px;
+            width: 300px;
+            background-color: white;
+            justify-content: space-evenly;
+            align-items: flex-end;
+            position: relative;
+            bottom: 500px;
+            left: 430px;
+            z-index: 1;
+            padding: 10px;
+            display: none;
+        }
+
+        /* .box {
+            position: relative;
+        } */
+
+        #callText {
+            color: white;
+            padding: 15px 25px;
+            font-size: 22px;
+            display: none;
+            z-index: 999;
+        }
+
+        #quit {
+            background-color: red;
+        }
+
+        #price {
+            display: none;
+            position: fixed;
+            border-radius: 10px;
+            border: 2px solid white;
+            z-index: 1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 400px;
+        }
+
+        #score {
+            position: fixed;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 99999;
+            text-align: center;
+        }
+
+        #restart {
+            position: fixed;
+            top: 90%;
+            left: 80%;
+            transform: translate(-50%, -50%);
+            z-index: 99999;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .box {
+                width: 95%;
+            }
+
+            .b1,
+            .b2,
+            .b3,
+            .b4 {
+                width: 100%;
+            }
+        }
+
+        .b1:hover,
+        .b2:hover,
+        .b3:hover,
+        .b4:hover {
+            background-color: #9c27b0;
+            cursor: pointer;
+            transform: scale(1.03);
+            transition: 0.3s;
+        }
+    </style>
+</head>
+
+<body onload="generate()">
+
+    <div class="main">
+        <div class="lifeline">
+            <div class="lifeline1">
+                <img src="swap.png" onclick="swap(this)">
+            </div>
+            <div class="lifeline2" onclick="fifty(this)">
+                <img src="half.png">
+            </div>
+            <div class="lifeline3" onclick="public(this)">
+                <img src="public.png">
+            </div>
+            <div class="lifeline4">
+                <img src="call.png" onclick="call(this)">
+                <!-- <img src="CallLifeline.png" id="call"> -->
+                <div id="callText"></div>
+            </div>
+        </div>
+        <img src="rupee.png" id="rs">
+        <img src="ab2.png" id="ab">
+        <div class="box"><br>
+            <div class="box2">
+            </div>
+            <div class="b1" onclick="choose(this,0)">
+            </div>
+            <div class="b2" onclick="choose(this,1)"></div>
+            <div class="b3" onclick="choose(this,2)"></div>
+            <div class="b4" onclick="choose(this,3)"></div>
+        </div>
+        <div class="timer">
+            <h1 id="time_box" style="color:red;font-size: 60px">00</h1>
+            <button onclick="next();life_line()" id="nextbtn">
+                Next
+            </button>
+            <button onclick="quit()" id="quit">Quit
+
+            </button>
+        </div>
+        <div class="right_box">
+
+            <div class="price">
+                7 Crores
+            </div>
+            <div class="price">
+                1 Crores
+            </div>
+            <div class="price">
+                50,00,000
+            </div>
+            <div class="price">
+                25,00,000
+            </div>
+            <div class="price">
+                12,50,000
+            </div>
+            <div class="price">
+                6,40,000
+            </div>
+            <div class="price">
+                3,20,000
+            </div>
+            <div class="price">
+                1,60,000
+            </div>
+            <div class="price">
+                80,000
+            </div>
+            <div class="price">
+                40,000
+            </div>
+            <div class="price">
+                20,000
+            </div>
+            <div class="price">
+                10,000
+            </div>
+            <div class="price">
+                5,000
+            </div>
+            <div class="price">
+                3,000
+            </div>
+            <div class="price">
+                2,000
+            </div>
+            <div class="price">
+                1,000
+            </div>
+        </div>
+        <div class="poll_box">
+            <div class="poll1">
+
+            </div>
+            <div class="poll2">
+
+            </div>
+            <div class="poll3">
+
+            </div>
+            <div class="poll4">
+
+            </div>
+        </div>
+    </div>
+    <h1 id="score"></h1>
+    <img src="price.jpeg" id="price">
+    <button id="restart" style="display: none;" onclick="restart()">Restart</button>
+</body>
+<script>
+    $(document).ready(function () {
+        $(".timer").slideDown(2000, function () {
+
+            setTimeout(function () {
+                document.getElementById("time_box").style.display = "block";
+            }, 3000);
+
+        });
+    });
+    var gameOver;
+    var timeout;
+    var timeInterval;
+    function timer() {
+        var TIME = document.getElementById("time_box");
+        var time = 45;
+
+        clearInterval(timeInterval);
+        $(".timer").slideDown(500);
+
+        TIME.innerHTML = `<span class="time-slide">${time}</span>`;
+
+        timeInterval = setInterval(function () {
+            TIME.innerHTML = time;
+
+            if (time == 0 && !isAnswered) {
+                clearInterval(timeInterval);
+                setInterval(function () {
+                    document.getElementById("restart").style.display = "block";
+                }, 1000)
+                timeout = setTimeout(function () {
+                    if (gameOver) return;
+                    document.querySelector(".main").style.display = "none";
+                    $("#price").slideDown(1000);
+
+                    let winAmount = ladder[ladder.length - level]?.innerHTML || 0;
+
+                    let message = "";
+
+                    if (level == 0) {
+                        winAmount = 0;
+                        message = "⏰ Time's up! ❌ Better luck next time 😔";
+                    }
+                    else if (level >= 1 && level <= 5) {
+                        message = `⏰ Time's up! 🎉 You won ${winAmount} rs<br>😐 Weak performance!`;
+                    }
+                    else if (level >= 6 && level <= 10) {
+                        message = `⏰ Time's up! 🎉 You won ${winAmount} rs<br>👍 Good performance!`;
+                    }
+                    else {
+                        message = `⏰ Time's up! 🎉 You won ${winAmount} rs<br>⭐ Excellent performance 🔥`;
+                    }
+
+                    document.getElementById("score").innerHTML = message;
+                    document.getElementById("score").style.color = "yellow";
+
+                }, 1000);
+            }
+            time--;
+        }, 1000);
+    }
+    function generate() {
+        var BOX1 = document.querySelector(".box2")
+        BOX1.innerHTML = "Select an option";
+        BOX1.style.color = "white";
+        var BOX2 = document.querySelector(".b1")
+        BOX2.innerHTML = "Option A";
+        BOX2.style.color = "white";
+        var BOX3 = document.querySelector(".b2")
+        BOX3.innerHTML = "Option B";
+        BOX3.style.color = "white";
+        var BOX4 = document.querySelector(".b3")
+        BOX4.innerHTML = "Option C";
+        BOX4.style.color = "white";
+        var BOX5 = document.querySelector(".b4")
+        BOX5.innerHTML = "Option D";
+        BOX5.style.color = "white";
+        var option = document.querySelectorAll(".b1,.b2,.b3,.b4");
+        option.forEach((el, i) => {
+            el.innerHTML = "Option " + String.fromCharCode(65 + i);
+            el.style.backgroundColor = "";
+            el.style.color = "white";
+        });
+    }
+
+    const questions = [
+        {
+            question: "Q:-Which language is used for web page structure?",
+            options: ["CSS", "HTML", "JavaScript", "Python"],
+            correctIndex: 1
+        },
+        {
+            question: "Q:-For validating a 10-digit mobile number, which JS code is correct??",
+            options: ["if(num.length == 10)", "if(num > 10)", "if(num < 10)", "if(num.length > 12)"],
+            correctIndex: 0
+        },
+        {
+            question: "Q:-Which method is used to print output in console?",
+            options: ["print()", "console.log()", "echo()", "printf()"],
+            correctIndex: 1
+        },
+        {
+            question: "Q:Which company developed Java?",
+            options: ["Microsoft", "Sun Microsystems", "Google", "Apple"],
+            correctIndex: 1
+        },
+        {
+            question: "Q:-Which keyword is used to declare a variable in JavaScript?",
+            options: ["int", "var", "define", "dim"],
+            correctIndex: 1
+        },
+        {
+            question: "Q:-Which operator is used for strict equality in JavaScript?",
+            options: ["==", "=", "===", "!="],
+            correctIndex: 2
+        },
+        {
+            question: "Q:-Which data type is NOT primitive in JavaScript?",
+            options: ["String", "Number", "Boolean", "Object"],
+            correctIndex: 3
+        },
+        {
+            question: "Q:-Which loop is guaranteed to execute at least once?",
+            options: ["for", "while", "do...while", "foreach"],
+            correctIndex: 2
+        },
+        {
+            question: "Q:-To create a 10-minute countdown timer, which of the following JS methods is used?",
+            options: ["setInterval()", "setTimeout()", "clearInterval()", "setTime()"],
+            correctIndex: 1
+        },
+        {
+            question: "Q:-Which function converts JSON to object?",
+            options: ["JSON.parse()", "JSON.stringify()", "JSON.object()", "JSON.convert()"],
+            correctIndex: 0
+        },
+        {
+            question: "Q:- What is the capital of India?",
+            options: ["Mumbai", "Delhi", "Kolkata", "Chennai"],
+            correctIndex: 1
+        },
+        {
+            question: "Q:- Which color is the sky?",
+            options: ["Green", "Blue", "Red", "Yellow"],
+            correctIndex: 1
+        },
+        {
+            question: "Q:- How many days are in a week?",
+            options: ["5", "6", "7", "8"],
+            correctIndex: 2
+        },
+        {
+            question: "Q:- Which animal is known as King of Jungle?",
+            options: ["Tiger", "Elephant", "Lion", "Dog"],
+            correctIndex: 2
+        },
+        {
+            question: "Q:- Which is a programming language?",
+            options: ["HTML", "CSS", "JavaScript", "All of these"],
+            correctIndex: 3
+        },
+        {
+            question: "Q:- Which planet do we live on?",
+            options: ["Mars", "Earth", "Venus", "Jupiter"],
+            correctIndex: 1
+        }
+    ];
+    questions.sort(() =>
+        Math.random() - 0.5);
+    let currentIndex = -1;
+    function loadq() {
+        if (currentIndex >= questions.length) {
+            winAmount = ladder[ladder.length - level].innerHTML;
+            setTimeout(function () {
+                document.querySelector(".main").style.display = "none";
+
+                $("#price").slideDown(1000, function () {
+                    document.getElementById("score").innerHTML = message;
+                    document.getElementById("score").style.color = "green";
+
+                    document.getElementById("restart").style.display = "block";
+                });
+            }, 500);
+            return;
+        }
+        let q = questions[currentIndex];
+        document.querySelector(".box2").innerHTML = q.question;
+        document.querySelector(".b1").innerHTML = `${q.options[0]}`;
+        document.querySelector(".b2").innerHTML = `${q.options[1]}`;
+        document.querySelector(".b3").innerHTML = `${q.options[2]}`;
+        document.querySelector(".b4").innerHTML = `${q.options[3]}`;
+        document.querySelectorAll(".b1,.b2,.b3,.b4").forEach(el => {
+            el.style.backgroundColor = "";
+            el.style.color = "white"
+        });
+        isAnswered = false;
+        document.getElementById("nextbtn").disabled = true;
+
+    }
+    var lastAns = false;
+    var isAnswered = false;
+    function choose(element, index) {
+        gameOver = true;
+        if (isAnswered) return;
+        isAnswered = true;
+        clearInterval(timeInterval);
+        clearTimeout(timeout);
+        var option = document.querySelectorAll(".b1,.b2,.b3,.b4")
+        if (index == questions[currentIndex].correctIndex) {
+            element.style.backgroundColor = "green";
+            element.style.color = "white";
+            ladder[ladder.length - 1 - level].style.backgroundColor = "green";
+            // level++;
+            lastAns = true;
+            document.getElementById("nextbtn").disabled = false;
+            setTimeout(() => {
+                $("#nextbtn").slideDown(300);
+            }, 500);
+
+        } else {
+            element.style.backgroundColor = "red";
+            element.style.color = "white";
+
+            ladder[ladder.length - 1 - level].style.backgroundColor = "red";
+
+            var option = document.querySelectorAll(".b1,.b2,.b3,.b4");
+            option[questions[currentIndex].correctIndex].style.backgroundColor = "green";
+            option[questions[currentIndex].correctIndex].style.color = "white";
+
+            lastAns = false;
+
+            let winAmount = 0;
+            let message = "";
+
+            if (level == 0) {
+                winAmount = 0;
+                message = "❌ Better luck next time 😔";
+            }
+            else if (level >= 1 && level <= 5) {
+                winAmount = ladder[ladder.length - level].innerHTML;
+                message = `🎉 You won ${winAmount} rs<br>😐 Weak performance!`;
+            }
+            else if (level >= 6 && level <= 10) {
+                winAmount = ladder[ladder.length - level].innerHTML;
+                message = `🎉 You won ${winAmount} rs<br>👍 Good performance!`;
+            }
+            else {
+                winAmount = ladder[ladder.length - level].innerHTML;
+                message = `🎉 You won ${winAmount} rs<br>⭐ Excellent performance 🔥`;
+            }
+
+            setTimeout(function () {
+                document.querySelector(".main").style.display = "none";
+
+                $("#price").slideDown(1000, function () {
+                    document.getElementById("score").innerHTML = message;
+                    document.getElementById("score").style.color = "green";
+
+                    document.getElementById("restart").style.display = "block";
+                });
+
+            }, 500);
+        }
+    }
+    var ladder = document.querySelectorAll(".price");
+    var level = 0;
+    function next() {
+        gameOver = false;
+        $("#nextbtn").slideUp(2000);
+        if (lastAns) {
+            level++;
+        }
+        currentIndex++;
+
+        if (currentIndex < questions.length) {
+            loadq();
+            timer();
+        }
+        isAnswered = false;
+        let life = document.querySelector(".lifeline");
+        lifelineUsed = false;
+        let options = document.querySelectorAll(".b1,.b2,.b3,.b4");
+        options.forEach((op) => {
+            op.style.display = "inline-block";
+        })
+        document.querySelector(".poll_box").style.display = "none";
+        life.classList.remove("hide-life");
+        life.classList.add("show-life");
+        document.getElementById("callText").style.display = "none";
+        ladder[ladder.length - 1 - level].style.backgroundColor = "yellow";
+    }
+
+    function swap(el) {
+        if (lifelineUsed) return;
+        lifelineUsed = true;
+        currentIndex++;
+        loadq();
+        document.querySelector(".lifeline1").classList.remove("show-life");
+        el.classList.add("hide");
+    }
+
+    let lifelineUsed = false;
+    function fifty(el) {
+        if (lifelineUsed) return;
+        lifelineUsed = true;
+        document.querySelector(".lifeline1").classList.remove("show-life");
+        el.classList.add("hide");
+        let options = document.querySelectorAll(".b1,.b2,.b3,.b4");
+        let correct = questions[currentIndex].correctIndex;
+        let wrong = [];
+        options.forEach((o, i) => {
+            if (i !== correct) {
+                wrong.push(i);
+            }
+        });
+        let randomWrong = wrong[Math.floor(Math.random() * 3)];
+
+        options.forEach((o, i) => {
+            if (i !== correct && i != randomWrong) {
+                o.style.display = "none";
+            }
+        });
+    }
+    function public(el) {
+        if (lifelineUsed) return;
+        lifelineUsed = true;
+        document.querySelector(".lifeline1").classList.remove("show-life");
+        el.classList.add("hide");
+        let correct = questions[currentIndex].correctIndex;
+        let percent = [0, 0, 0, 0];
+        let correctPercent = Math.floor(Math.random() * 20) + 50;
+
+        let remaining = 100 - correctPercent;
+
+        let wrong1 = Math.floor(Math.random() * remaining);
+        let wrong2 = Math.floor(Math.random() * (remaining - wrong1));
+        let wrong3 = remaining - wrong1 - wrong2;
+        let wrongArr = [wrong1, wrong2, wrong3];
+        let j = 0;
+        for (var i = 0; i < 4; i++) {
+            if (i == correct) {
+                percent[i] = correctPercent;
+            }
+            else {
+                percent[i] = wrongArr[j]
+                j++;
+            }
+        }
+        setTimeout(function () {
+            $(".poll_box").slideDown(2000);
+            document.querySelector(".poll_box").style.display = "flex";
+        }, 100)
+        document.querySelector(".poll1").innerHTML = "A : " + percent[0] + "%";
+        document.querySelector(".poll2").innerHTML = "B : " + percent[1] + "%";
+        document.querySelector(".poll3").innerHTML = "C : " + percent[2] + "%";
+        document.querySelector(".poll4").innerHTML = "D : " + percent[3] + "%";
+
+        document.querySelector(".poll1").style.height = percent[0] + "%";
+        document.querySelector(".poll2").style.height = percent[1] + "%";
+        document.querySelector(".poll3").style.height = percent[2] + "%";
+        document.querySelector(".poll4").style.height = percent[3] + "%";
+    }
+    function call(el) {
+        if (lifelineUsed) return;
+        lifelineUsed = true;
+        el.classList.add("hide");
+
+        var callText = document.getElementById("callText");
+        callText.style.display = "block";
+        callText.innerHTML = "📞 Calling...";
+        setTimeout(function () {
+            let correct = questions[currentIndex].correctIndex;
+            callText.innerHTML = "answer is " + correct;
+            let options = document.querySelectorAll(".b1,.b2,.b3,.b4");
+            options[correct].style.backgroundColor = "yellow";
+        }, 3000)
+    }
+
+    function quit() {
+        gameOver = true;
+        clearInterval(timeInterval);
+        clearTimeout(timeout);
+        let winAmount = 0;
+        let message = "";
+
+        if (level == 0) {
+            message = "❌ You didn’t play! Better luck next time 😔";
+        } else {
+            winAmount = ladder[ladder.length - level]?.innerHTML || 0;
+
+            if (level >= 1 && level <= 5) {
+                message = `🎉 You won ${winAmount} rs<br>😐 Weak performance!`;
+            }
+            else if (level >= 6 && level <= 10) {
+                message = `🎉 You won ${winAmount} rs<br>👍 Good performance!`;
+            }
+            else {
+                message = `🎉 You won ${winAmount} rs<br>⭐ Excellent performance 🔥`;
+            }
+        }
+
+        document.getElementById("score").innerHTML = message;
+        document.getElementById("score").style.color = "yellow";
+        document.getElementById("restart").style.display = "block";
+
+        $(".main").fadeOut(500);
+        $("#price").slideDown(1000);
+    }
+    function restart() {
+        window.location.href = "kbc.html";
+    }
+</script>
+
+</html>
